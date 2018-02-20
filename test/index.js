@@ -4,8 +4,10 @@ const path = require('path');
 
 const extractor = require('..');
 
-const rs = fs.createReadStream(path.resolve(__dirname, 'pdf-test.pdf'));
+async function test() {
+    const rs = fs.createReadStream(path.resolve(__dirname, 'pdf-test.pdf'));
 
-extractor.extractTextFromPdfStream(rs)
-         .then(console.log)
-         .catch((err) => console.error('FAILED', err));
+    return await extractor.extractTextFromPdfStream(rs);
+}
+
+test().then(console.log).catch((err) => console.error('FAILED', err));
