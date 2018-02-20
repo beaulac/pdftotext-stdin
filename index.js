@@ -1,4 +1,8 @@
 'use strict';
-const extractTextFromPdfStream = require('./lib/extract-text').extractTextFromPdfStream;
+const extractor = require('./lib/extract-text');
+const namedPipes = require('./lib/named-pipes');
 
-module.exports = { extractTextFromPdfStream };
+module.exports = {
+    extractTextFromPdfStream: extractor.extractTextFromPdfStream,
+    pipes: namedPipes
+};
