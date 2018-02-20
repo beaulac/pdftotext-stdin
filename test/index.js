@@ -8,4 +8,4 @@ const rs = fs.createReadStream(path.resolve(__dirname, 'pdf-test.pdf'));
 
 extractor.extractTextFromPdfStream(rs)
          .then(console.log)
-         .catch(console.error);
+         .catch((err) => console.error('FAILED', err));
