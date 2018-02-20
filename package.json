@@ -1,0 +1,15 @@
+{
+  "name": "pdftotext-stdin",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Antoine Beauvais-Lacasse <antoine.beaulac@gmail.com>",
+  "license": "ISC",
+  "scripts": {
+    "test": "node test"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "debug": "^3.1.0",
+    "pump": "^3.0.0"
+  }
+}
