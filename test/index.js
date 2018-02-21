@@ -1,28 +1,46 @@
 'use strict';
+const Promise = require('bluebird');
 const fs = require('fs');
 const path = require('path');
 
 const extractor = require('..');
 
-async function test() {
-    const rs = fs.createReadStream(path.resolve(__dirname, 'pdf-test.pdf'));
+function runSuite(testFile) {
+    console.log(`Running ${testFile}`);
 
-    return await extractor.extractTextFromPdfStream(rs);
+    async function test(testFile) {
+        const rs = fs.createReadStream(path.resolve(__dirname, testFile));
+
+        return await extractor.extractTextFromPdfStream(rs);
+    }
+
+    const result = test(testFile)
+    // .then(console.log)
+        .then(() => console.log(`${testFile} test OK`))
+        .catch((err) => console.error('FAILED', err));
+
+
+    async function testLayout(testFile) {
+        const rs = fs.createReadStream(path.resolve(__dirname, testFile));
+
+        return await extractor.extractTextFromPdfStream(rs, { layout: 'bbox-layout' });
+    }
+
+    const layoutResult = testLayout(testFile)
+    // .then(console.log)
+        .then(() => console.log(`${testFile} testLayout OK`))
+        .catch((err) => console.error('FAILED', err));
+
+    return Promise.join(
+        result,
+        layoutResult
+    );
 }
 
-test()
-    // .then(console.log)
-    .then(() => console.log('test OK'))
-    .catch((err) => console.error('FAILED', err));
-
-
-async function testLayout() {
-    const rs = fs.createReadStream(path.resolve(__dirname, 'pdf-test.pdf'));
-
-    return await extractor.extractTextFromPdfStream(rs, { layout: 'bbox-layout' });
-}
-
-testLayout()
-    // .then(console.log)
-    .then(() => console.log('testLayout OK'))
-    .catch((err) => console.error('FAILED', err));
+Promise.map(
+    [
+        'large-pdf-test.pdf',
+        'pdf-test.pdf'
+    ],
+    runSuite
+);
