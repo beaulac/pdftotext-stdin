@@ -1,4 +1,7 @@
 # pdftotext-stdin
+
+[![npm version](https://img.shields.io/npm/v/pdftotext-stdin.svg)](https://www.npmjs.com/package/pdftotext-stdin)
+
 Beta / WIP: 
 Make pdftotext read from stdin, output to FIFO (pdftotext doesn't want to be a duplex :c)
 
