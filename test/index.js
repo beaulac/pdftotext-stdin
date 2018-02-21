@@ -10,4 +10,19 @@ async function test() {
     return await extractor.extractTextFromPdfStream(rs);
 }
 
-test().then(console.log).catch((err) => console.error('FAILED', err));
+test()
+    // .then(console.log)
+    .then(() => console.log('test OK'))
+    .catch((err) => console.error('FAILED', err));
+
+
+async function testLayout() {
+    const rs = fs.createReadStream(path.resolve(__dirname, 'pdf-test.pdf'));
+
+    return await extractor.extractTextFromPdfStream(rs, { layout: 'bbox-layout' });
+}
+
+testLayout()
+    // .then(console.log)
+    .then(() => console.log('testLayout OK'))
+    .catch((err) => console.error('FAILED', err));
