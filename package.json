@@ -1,7 +1,7 @@
 {
   "name": "pdftotext-stdin",
   "description": "Use pdftotext stdin without specifying an output file.",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "main": "index.js",
   "author": "Antoine Beauvais-Lacasse <antoine.beaulac@gmail.com>",
   "license": "ISC",
@@ -18,10 +18,6 @@
   "engines": {
     "node": ">=6.5"
   },
-  "os": [
-    "darwin",
-    "linux"
-  ],
   "keywords": [
     "pdftotext",
     "pdf",
